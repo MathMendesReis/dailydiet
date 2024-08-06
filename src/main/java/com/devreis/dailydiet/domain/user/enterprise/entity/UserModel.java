@@ -16,7 +16,7 @@ public class UserModel {
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
     private String email;
-    private String passaword;
+    private String password;
 
     public UserModel() {
     }
@@ -37,11 +37,11 @@ public class UserModel {
         this.email = email;
     }
 
-    public String getPassaword() {
-        return passaword;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPassaword(String passaword) {
-        this.passaword = passaword;
+    public void setPassword(String passaword) {
+        this.password = passaword;
     }
 }

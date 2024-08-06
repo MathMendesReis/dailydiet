@@ -22,11 +22,11 @@ public class CreateUserUseCase {
           throw new UserExistsException();
         });
         //Criptografando senha
-        String encryptedPassword = new BCryptPasswordEncoder().encode(body.passaword());
+        String encryptedPassword = new BCryptPasswordEncoder().encode(body.password());
         //criando usuario no db
         UserModel userModel = new UserModel();
         userModel.setEmail(body.email());
-        userModel.setPassaword(encryptedPassword);
+        userModel.setPassword(encryptedPassword);
         //salvar usuario no db
         return userRepository.save(userModel);
 
