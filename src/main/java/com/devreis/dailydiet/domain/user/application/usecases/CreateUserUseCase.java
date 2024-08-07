@@ -27,6 +27,7 @@ public class CreateUserUseCase {
         UserModel userModel = new UserModel();
         userModel.setEmail(body.email());
         userModel.setPassword(encryptedPassword);
+        userModel.setRole(body.role());
         //salvar usuario no db
         return userRepository.save(userModel);
 
