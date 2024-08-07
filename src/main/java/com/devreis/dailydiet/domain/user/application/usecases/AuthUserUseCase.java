@@ -1,6 +1,6 @@
 package com.devreis.dailydiet.domain.user.application.usecases;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 
 import java.time.Duration;
 import java.time.Instant;
@@ -8,23 +8,23 @@ import java.time.Instant;
 import javax.security.sasl.AuthenticationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.algorithms.Algorithm;
 import com.devreis.dailydiet.domain.user.enterprise.dto.UserLoginRequestDTO;
 import com.devreis.dailydiet.domain.user.enterprise.dto.UserLoginResponseDTO;
 import com.devreis.dailydiet.domain.user.enterprise.exceptions.UserExistsException;
 import com.devreis.dailydiet.infra.database.UserRepository;
+import com.devreis.dailydiet.infra.jwt.JwtService;
 
 @Service
 public class AuthUserUseCase {
     private PasswordEncoder passwordEncoder;
     private UserRepository userRepository;
+    private JwtService jwtService;
 
 
-    public AuthUserUseCase( UserRepository userRepository,PasswordEncoder passwordEncoder){
+    public AuthUserUseCase( UserRepository userRepository,PasswordEncoder passwordEncoder,JwtService jwtService){
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     public UserLoginResponseDTO execute(UserLoginRequestDTO userLoginRequestDTO) throws AuthenticationException {
@@ -40,13 +40,8 @@ public class AuthUserUseCase {
             throw new AuthenticationException();
         }
 
-        Algorithm algorithm = Algorithm.HMAC256("teste");
-        Instant expiresIn = Instant.now().plus(Duration.ofMinutes(10));
-        var token = JWT.create()
-                .withIssuer("javagas")
-                .withSubject(user.getId().toString())
-                .withExpiresAt(expiresIn)
-                .sign(algorithm);
+        var token = this.jwtService.generateToken(user);
+        var expiresIn = Instant.now().plus(Duration.ofMinutes(10));
         
         return new UserLoginResponseDTO(token, expiresIn) ;
     }
