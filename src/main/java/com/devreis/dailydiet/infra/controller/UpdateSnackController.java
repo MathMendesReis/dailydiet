@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devreis.dailydiet.domain.snack.application.usecases.UpdateSnackUseCase;
 import com.devreis.dailydiet.domain.snack.enterprise.dto.RequestUpdateSnackDTO;
-import com.devreis.dailydiet.domain.user.enterprise.dto.UserLoginRequestDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

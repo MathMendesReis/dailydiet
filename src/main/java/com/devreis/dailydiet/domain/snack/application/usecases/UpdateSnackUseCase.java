@@ -29,9 +29,8 @@ public class UpdateSnackUseCase {
             updateSnack.setIsDiet(requestUpdateSnackDTO.getIsDiet());
         }
 
-        var snack = this.snackRepository.save(updateSnack);
 
-        return snack;
+        return this.snackRepository.save(updateSnack);
 
     }
 }

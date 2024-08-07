@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.devreis.dailydiet.domain.user.application.usecases.CreateUserUseCase;
 import com.devreis.dailydiet.domain.user.enterprise.dto.CreateUserRequestDTO;
-import com.devreis.dailydiet.domain.user.enterprise.dto.UserLoginRequestDTO;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;

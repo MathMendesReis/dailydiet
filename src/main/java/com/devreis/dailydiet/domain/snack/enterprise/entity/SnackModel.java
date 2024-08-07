@@ -49,6 +49,8 @@ public class SnackModel {
     }
 
     public SnackModel() {
+        //metodo construtor vazio
+
     }
 
     public UUID getId() {

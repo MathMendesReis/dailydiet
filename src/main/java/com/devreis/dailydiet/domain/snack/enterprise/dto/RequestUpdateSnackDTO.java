@@ -9,6 +9,7 @@ public class RequestUpdateSnackDTO {
     @Schema(description = "Indicates if the snack is diet", allowableValues = {"true", "false"}, example = "true")
     private String isDiet;
     public RequestUpdateSnackDTO() {
+        //metodo construtor vazio
     }
     public String getDescription() {
         return description;
