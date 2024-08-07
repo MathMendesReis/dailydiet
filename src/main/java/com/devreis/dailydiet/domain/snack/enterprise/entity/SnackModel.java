@@ -15,6 +15,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 
 @Entity
 @Table(name = "tb_snack")
@@ -24,7 +26,9 @@ public class SnackModel {
     @Column(name = "snack_id")
     private UUID id;
     @Column(length = 500)
+    @NotBlank
     private String description;
+    @Pattern(regexp = "^(true|false)$", message = "O campo [isDiet] deve ser 'true' ou 'false'")
     private String isDiet;
     
     @CreationTimestamp
