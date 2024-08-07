@@ -14,9 +14,12 @@ import jakarta.persistence.Table;
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(name = "user_id")
+
     private UUID id;
     private String email;
     private String password;
+    private UserRole role;
 
     public UserModel() {
     }
@@ -43,5 +46,13 @@ public class UserModel {
 
     public void setPassword(String passaword) {
         this.password = passaword;
+    }
+
+    public UserRole getRole() {
+        return role;
+    }
+
+    public void setRole(UserRole role) {
+        this.role = role;
     }
 }
